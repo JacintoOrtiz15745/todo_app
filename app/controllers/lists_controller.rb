@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   def index
-    @list = List.all
+    @list = current_user.lists
   end
 
   def show
@@ -16,7 +16,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.new(list_params)
 
     if @list.save
       redirect_to @list
